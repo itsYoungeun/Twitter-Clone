@@ -43,3 +43,4 @@ npm run build
 ```shell
 npm start
 ```
+[Go check out the video tutorial by As a Programmer](https://youtu.be/4GUVz2psWUg)
