@@ -2,8 +2,6 @@
 
 ![Demo App](https://i.ibb.co/f8y9vGS/Group-82.png)
 
-[Video Tutorial on Youtube](https://youtu.be/4GUVz2psWUg)
-
 Some Features:
 
 -   ⚛️ Tech Stack: React.js, MongoDB, Node.js, Express, Tailwind
