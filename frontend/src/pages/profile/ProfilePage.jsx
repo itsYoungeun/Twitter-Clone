@@ -14,7 +14,7 @@ import { MdEdit } from "react-icons/md";
 import { useQuery } from "@tanstack/react-query";
 import { formatMemberSinceDate } from "../../utils/date";
 
-import useFollow from "../../hooks/useFollow"; 
+import useFollow from "../../hooks/useFollow";
 import useUpdateUserProfile from "../../hooks/useUpdateUserProfile";
 
 const ProfilePage = () => {
@@ -25,12 +25,17 @@ const ProfilePage = () => {
 	const coverImgRef = useRef(null);
 	const profileImgRef = useRef(null);
 
-	const {username} = useParams();
+	const { username } = useParams();
 
 	const { follow, isPending } = useFollow();
-	const {data:authUser} = useQuery({ queryKey: ["authUser"] });
+	const { data: authUser } = useQuery({ queryKey: ["authUser"] });
 
-	const { data: user, isLoading, refetch, isRefetching } = useQuery({
+	const {
+		data: user,
+		isLoading,
+		refetch,
+		isRefetching,
+	} = useQuery({
 		queryKey: ["userProfile"],
 		queryFn: async () => {
 			try {
@@ -65,7 +70,7 @@ const ProfilePage = () => {
 	};
 
 	useEffect(() => {
-		refetch()
+		refetch();
 	}, [username, refetch]);
 
 	return (
@@ -105,14 +110,14 @@ const ProfilePage = () => {
 								<input
 									type='file'
 									hidden
-                                    accept='image/*'
+									accept='image/*'
 									ref={coverImgRef}
 									onChange={(e) => handleImgChange(e, "coverImg")}
 								/>
 								<input
 									type='file'
 									hidden
-                                    accept='image/*'
+									accept='image/*'
 									ref={profileImgRef}
 									onChange={(e) => handleImgChange(e, "profileImg")}
 								/>
@@ -147,11 +152,11 @@ const ProfilePage = () => {
 									<button
 										className='btn btn-primary rounded-full btn-sm text-white px-4 ml-2'
 										onClick={async () => {
-											await updateProfile({coverImg, profileImg})
+											await updateProfile({ coverImg, profileImg });
+											refetch();
 											setProfileImg(null);
 											setCoverImg(null);
-										}
-									}
+										}}
 									>
 										{isUpdatingProfile ? "Updating..." : "Update"}
 									</button>
@@ -171,11 +176,12 @@ const ProfilePage = () => {
 											<>
 												<FaLink className='w-3 h-3 text-slate-500' />
 												<a
-													href=''
+													href={user.link}
 													target='_blank'
 													rel='noreferrer'
 													className='text-sm text-blue-500 hover:underline'
 												>
+													{user?.link}
 												</a>
 											</>
 										</div>
