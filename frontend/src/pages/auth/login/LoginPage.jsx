@@ -13,10 +13,14 @@ const LoginPage = () => {
 		username: "",
 		password: "",
 	});
-	
 	const queryClient = useQueryClient();
 
-	const { mutate:loginMutation, isPending, isError, error } = useMutation({
+	const {
+		mutate: loginMutation,
+		isPending,
+		isError,
+		error,
+	} = useMutation({
 		mutationFn: async ({ username, password }) => {
 			try {
 				const res = await fetch("/api/auth/login", {
@@ -53,7 +57,7 @@ const LoginPage = () => {
 
 	return (
 		<div className='max-w-screen-xl mx-auto flex h-screen'>
-			<div className='flex-1 hidden lg:flex items-center justify-center'>
+			<div className='flex-1 hidden lg:flex items-center  justify-center'>
 				<XSvg className='lg:w-2/3 fill-white' />
 			</div>
 			<div className='flex-1 flex flex-col justify-center items-center'>
@@ -86,9 +90,7 @@ const LoginPage = () => {
 					<button className='btn rounded-full btn-primary text-white'>
 						{isPending ? "Loading..." : "Login"}
 					</button>
-					{isError && <p className='text-red-500'>
-						{error.message}
-						</p>}
+					{isError && <p className='text-red-500'>{error.message}</p>}
 				</form>
 				<div className='flex flex-col gap-2 mt-4'>
 					<p className='text-white text-lg'>{"Don't"} have an account?</p>

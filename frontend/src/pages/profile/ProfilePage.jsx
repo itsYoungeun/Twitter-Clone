@@ -153,7 +153,6 @@ const ProfilePage = () => {
 										className='btn btn-primary rounded-full btn-sm text-white px-4 ml-2'
 										onClick={async () => {
 											await updateProfile({ coverImg, profileImg });
-											refetch();
 											setProfileImg(null);
 											setCoverImg(null);
 										}}
@@ -176,7 +175,7 @@ const ProfilePage = () => {
 											<>
 												<FaLink className='w-3 h-3 text-slate-500' />
 												<a
-													href={user.link}
+													href={`https://www.linkedin.com/in/${user.link}`}
 													target='_blank'
 													rel='noreferrer'
 													className='text-sm text-blue-500 hover:underline'
